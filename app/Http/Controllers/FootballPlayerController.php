@@ -9,7 +9,7 @@ class FootballPlayerController extends Controller
 {
     public function index($filter){
         if($filter == 'all'){
-            $footballPlayers = FootballPlayer::all()->with('footballTeam')->get();;
+            $footballPlayers = FootballPlayer::find(1)->with('footballTeam')->get();;
         }else{
             $footballPlayers = FootballPlayer::where('position', $filter)->with('footballTeam')->get();
         }
