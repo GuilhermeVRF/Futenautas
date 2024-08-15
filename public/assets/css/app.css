@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(60, 194, 60) !important;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.content span{
+    width: 100%;
+    text-align: center;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background-color: #dc3545;
+}
+
+.section-header{
+    display: flex;
+    justify-content: start;
+    border-bottom: solid 2px white;
+    padding: 0.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+

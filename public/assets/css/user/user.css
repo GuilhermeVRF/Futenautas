@@ -1,0 +1,22 @@
+.div-user{
+    display: flex;
+    padding: 2rem;
+    border: solid 2px white;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.div-user form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+    color: white;
+}
+
+label{
+    width: 100%;
+}
+
