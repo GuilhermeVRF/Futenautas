@@ -7,6 +7,14 @@ body{
     background-color: rgb(60, 194, 60) !important;
 }
 
+.container{
+    display: flex;
+    padding: 2rem;
+    border: solid 2px white;
+    width: 50%;
+    border-radius: 20px;
+}
+
 .content{
     display: flex;
     flex-direction: row;

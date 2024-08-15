@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <div class="div-user">
+    <div class="container">
         <form method= "POST" action="{{ route('user.register') }}">
             @csrf
             <label for="name" class="form-label">Nome</label>

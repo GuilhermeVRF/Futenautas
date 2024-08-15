@@ -9,9 +9,9 @@ class FootballPlayer extends Model
     protected $table = 'FootballPlayer';
     public $timestamps = false;
 
-    public function footBallTeam()
+    public function footballTeam()
     {
-        return $this->belongsTo(FootballTeam::class);
+        return $this->belongsTo(FootballTeam::class, 'footballTeam_id');
     }
 
     public function roundLineup(){

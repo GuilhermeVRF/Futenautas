@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\FootballTeam;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller{
     public function index(){
@@ -22,28 +24,15 @@ class UserController extends Controller{
             'heartFootballTeam' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12'
         ]);
 
-
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Crypt::encryptString($request->password);
+        $user->password = Hash::make($request->password);
         $user->footballTeam_id = $request->heartFootballTeam;
         $user->save();
 
-        return response()->json('Usuário criado com sucesso!');
-    }
+        Auth::login($user);
 
-    public function login(Request $request){
-        $user = User::where('email', $request->email)->first();
-
-        if(!empty($user)){
-            $user_password = Crypt::decryptString($user->password);
-            if($request->password == $user_password){
-                return response()->json('sucesso');
-            }
-        }
-
-        $request->session()->flash('error', 'Ocorreu um erro!');
-        return back();
+        return Redirect::route('listPlayers', 'all');
     }
 }

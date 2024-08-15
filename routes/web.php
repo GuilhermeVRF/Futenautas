@@ -2,16 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FootballPlayerController;
 
 Route::get('/', function() {
-    return view('user.signin');
+    return view('user.login');
 });
 
-
-Route::get('/signup', [UserController::class, 'index']);
-Route::get('/signin', function() {
-    return view('user.signin');
+Route::controller(UserController::class)->group( function () {
+    Route::get('/signup', 'index');
+    Route::post('/register',  'store')->name('user.register');
 });
 
-Route::post('/register', [UserController::class, 'store'])->name('user.register');
-Route::post('/login', [UserController::class, 'login'])->name('user.login');
+Route::controller(LoginController::class)->group( function () {
+    Route::get('/login',  'index')->name('login');
+    Route::post('/authenticate',  'authenticate')->name('user.authenticate');
+});
+
+Route::controller(FootballPlayerController::class)->group( function () {
+    Route::get('/players/{filter}',  'index')->name('listPlayers');
+})->middleware('auth');
+

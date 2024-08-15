@@ -12,8 +12,8 @@
 
 @section('content')
 
-<div class="div-user">
-    <form method= "POST" action="{{ route('user.login') }}">
+<div class="container">
+    <form method= "POST" action="{{ route('user.authenticate') }}">
         @csrf
         <label for ="email" class="form-label">E-mail</label>
         <input type="email" name="email" id="email" class="form-control">
