@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FootballPlayerController;
 use App\Http\Controllers\TeamPlayerController;
-use App\Models\RoundLineup;
+use App\Http\Controllers\RoundLineupController;
 
 Route::get('/', function() {
     return view('user.login');

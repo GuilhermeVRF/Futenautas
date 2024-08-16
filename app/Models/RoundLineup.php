@@ -13,4 +13,8 @@ class RoundLineup extends Model
     public function round(){
         return $this->belongsTo(RoundLineup::class);
     }
+
+    public function footballplayer(){
+        return $this->belongsTo(FootballPlayer::class);
+    }
 }

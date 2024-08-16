@@ -3,17 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\FootballPlayer;
+use App\Models\Round;
+use App\Models\RoundLineup;
 use App\Models\TeamPlayer;
 use Illuminate\Http\Request;
-use App\Models\Image;
+use Illuminate\Support\Facades\Auth;
 
 class FootballPlayerController extends Controller
 {
     public function index(){
         $teamInfo = TeamPlayer::getTeamInfo();
+        $amount = TeamPlayer::where('user_id', Auth::id())->select('amount')->first()['amount'];
+        $round = Round::orderBy('id', 'DESC')->first();
+        $round_amount = $amount - RoundLineup::where('round_id', $round['id'])
+        ->join('footballplayer', 'roundlineup.footballplayer_id', '=', 'footballplayer.id')
+        ->sum('footballplayer.price');
+
         $footballPlayers = FootballPlayer::find(1)->with('footballTeam')->get();
 
-        return view('players.index', compact('footballPlayers', 'teamInfo'));
+        return view('players.index', compact(
+        'footballPlayers',
+        'teamInfo',
+        'round_amount'));
     }
 
     public function show(Request $request){

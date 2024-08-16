@@ -14,7 +14,7 @@ class FootballPlayer extends Model
         return $this->belongsTo(FootballTeam::class, 'footballTeam_id');
     }
 
-    public function roundLineup(){
+    public function roundlineup(){
         return $this->hasMany(RoundLineup::class);
     }
 

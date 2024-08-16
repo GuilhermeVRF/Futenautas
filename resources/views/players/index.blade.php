@@ -11,6 +11,9 @@
 @endsection
 
 @section('content')
+    <div class="teamPlayerAmount">
+        <h3>Saldo: R$ {{ $round_amount }}</h3>
+    </div>
     <div class="player-filter">
         <form method= "POST" action="{{ route('positionFilter') }}">
             @csrf
@@ -37,10 +40,13 @@
                     </div>
                 </div>
 
-                <input type="hidden" value="{{ $footballPlayer['id'] }}">
-                <div class="btn-buy">
-                    <a href="" value="Comprar" class= "btn btn-warning">Comprar</a>
-                </div>
+                <form method="POST" action="{{ route('teamPlayer.store') }}">
+                    @csrf
+                    <input type="hidden" name="footballPlayer_id" value="{{ $footballPlayer['id'] }}">
+                    <div class="btn-buy">
+                        <input type="submit" value="Comprar" class= "btn btn-warning">
+                    </div>
+                </form>
             </div>
         @endforeach
 

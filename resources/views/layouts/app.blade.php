@@ -16,9 +16,11 @@
         </section>
 
         <section class="content">
-            @if (!empty(Session::get('error')))
-                <span class="flash-error">{{ Session::get('error') }}</span>
-            @endif
+            <div class="div-error">
+                @if ($errors->any())
+                    <span class="flash-error">{{ $errors->first() }}</span>
+                @endif
+            </div>
             @yield('content')
         </section>
 
