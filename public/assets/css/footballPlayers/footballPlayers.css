@@ -2,11 +2,34 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 2rem;
+    padding: 1.5rem;
     border: solid 2px white;
     width: 50%;
     border-radius: 20px;
-    margin: 0.5rem;
+    margin: 1rem;
+}
+
+.player-filter{
+    width: 50%;
+}
+
+.player-info{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.btn-buy{
+    display: flex;
+    justify-content: end;
+}
+
+.player-filter form{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
 }
 
 .player-card h1, p{

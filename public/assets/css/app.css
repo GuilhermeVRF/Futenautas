@@ -25,11 +25,16 @@ body{
     color: white;
 }
 
+.container label{
+    width: 100%;
+}
+
 .content{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
 .content span{
@@ -45,12 +50,30 @@ body{
 
 .section-header{
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: solid 2px white;
     padding: 0.5rem;
     color: white;
     margin-bottom: 2rem;
     width: 100%;
+}
+
+.div-teamInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.div-teamInfo img{
+    height: 70px;
+}
+
+.div-teamInfo p{
+    text-align: center;
+    font-weight: 400;
 }
 
 

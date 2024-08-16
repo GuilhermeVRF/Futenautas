@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="container">
-        <form method= "POST" action="{{ route('user.register') }}">
+        <form method= "POST" action="{{ route('user.store') }}">
             @csrf
             <label for="name" class="form-label">Nome</label>
             <input type="text" name="name" id="name" class="form-control">

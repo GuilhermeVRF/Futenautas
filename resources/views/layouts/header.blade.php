@@ -1,7 +1,9 @@
 <div class="section-header">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <h1>{{ $title }}</h1>
-    <div class="section-header-breadcrumb">
-          
-    </div>
-  </div>
+    @if(!empty($teamInfo))
+        <div class="div-teamInfo">
+            <img src={{ $teamInfo['logo'] }} height="70px"></img>
+            <p style="color: {{ $teamInfo['color'] }};">{{ $teamInfo['name'] }}</p>
+        </div>
+    @endif
+</div>

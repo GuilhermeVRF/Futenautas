@@ -23,7 +23,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
 
-            return Redirect::route('listPlayers', 'all');
+            return Redirect::route('listAllPlayers', 'all');
         }
 
         return back()->withErrors([
