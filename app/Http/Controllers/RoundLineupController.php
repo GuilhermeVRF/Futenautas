@@ -11,6 +11,30 @@ use Illuminate\Support\Facades\Auth;
 
 class RoundLineupController extends Controller
 {
+    public function index(){
+        $teamInfo = TeamPlayer::getTeamInfo();
+        $amount = TeamPlayer::where('user_id', Auth::id())->select('amount')->first()['amount'];
+        $round = Round::orderBy('id', 'DESC')->first()['id'];
+
+        $round_amount = $amount - RoundLineup::where('round_id', $round)
+        ->join('footballplayer', 'roundlineup.footballplayer_id', '=', 'footballplayer.id')
+        ->where('teamPlayer_id', $teamInfo['id'])
+        ->sum('footballplayer.price');
+
+        $roundLineups = RoundLineup::where('teamPlayer_id', $teamInfo['id'])
+        ->where('round_id', $round)
+        ->join('footballplayer', 'roundLineup.footballplayer_id', '=', 'footballplayer.id')
+        ->orderBy('footballplayer.position')
+        ->select('roundLineup.id', 'footballplayer.name', 'footballplayer.price', 'footballplayer.position')
+        ->get();
+
+        return view('roundLineup.index' , compact('teamInfo',
+        'round_amount',
+        'round',
+        'roundLineups'
+        ));
+    }
+
     public function store(Request $request){
         $request->validate([
                 'footballPlayer_id' => 'required'
@@ -60,28 +84,46 @@ class RoundLineupController extends Controller
             $roundLineup->save();
         }
 
-        return back();
+
+        return back()->with('success', 'Jogador escalado com sucesso!');;
+    }
+
+    public function destroy(Request $request){
+        $request->validate([
+            'roundLineup_id' => 'required'
+        ],[
+            'roundLineup_id.required' => 'É obrigatório a escolha de um jogador!'
+        ]);
+
+        $roundLineup = RoundLineup::where('id', $request->roundLineup_id)->first();
+        $deleted = $roundLineup->delete();
+
+        if($deleted == true){
+            return back()->with('success', 'Jogador removido com sucesso!');
+        }else{
+            return back()->withErrors('error', 'Não foi possivel remover esse jogador!');
+        }
     }
 
     private function numbersPerPosition442($position): int {
         switch($position){
-            case 'GL':
+            case '1':
                 return 1;
             break;
 
-            case 'LAT':
+            case '2':
                 return 2;
             break;
 
-            case 'DEF':
+            case '3':
                 return 2;
             break;
 
-            case 'MEI':
+            case '4':
                 return 4;
             break;
 
-            case 'ATA':
+            case '5':
                 return 2;
             break;
         }

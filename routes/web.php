@@ -13,7 +13,7 @@ Route::get('/', function() {
 
 Route::controller(UserController::class)->group( function () {
     Route::get('/signup', 'index');
-    Route::post('/store',  'store')->name('user.store');
+    Route::post('store',  'store')->name('user.store');
 });
 
 Route::controller(LoginController::class)->group( function () {
@@ -23,7 +23,7 @@ Route::controller(LoginController::class)->group( function () {
 
 Route::controller(FootballPlayerController::class)->group( function () {
     Route::get('/players',  'index')->name('listAllPlayers');
-    Route::post('/players',  'show')->name('positionFilter');
+    Route::post('/players',  'INDEX')->name('listAllPlayers');
 })->middleware('auth.basic');
 
 Route::controller(TeamPlayerController::class)->group( function () {
@@ -32,5 +32,7 @@ Route::controller(TeamPlayerController::class)->group( function () {
 });
 
 Route::controller(RoundLineupController::class)->group( function () {
-    Route::post('/teamPlayer/store',  'store')->name('teamPlayer.store');
+    Route::post('/roundLineup/store',  'store')->name('roundLineup.store');
+    Route::get('roundLineup', 'index')->name('roundLineup');
+    Route::post('/roundLineup/delete', 'destroy')->name('roundLine.destroy');
 });

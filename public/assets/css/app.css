@@ -41,17 +41,6 @@ body{
     align-items: center;
 }
 
-.content span{
-    width: 100%;
-    text-align: center;
-    padding: 0.25rem;
-    margin-bottom: 1rem;
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    background-color: #dc3545;
-}
-
 .section-header{
     display: flex;
     justify-content: space-between;
@@ -80,13 +69,31 @@ body{
     font-weight: 400;
 }
 
-.div-error{
+.div-alert{
     display: flex;
     width: 50%;
     margin: 0.5rem;
 }
 
-.div-error span{
+.div-alert span{
     width: 100%;
+    text-align: center;
+    padding: 0.25rem;
+    margin: 0.5rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
 }
 
+.div-alert .flash-error{
+    background-color: #dc3545;
+}
+
+.div-alert .flash-success{
+    background-color: #198754;
+}
+
+.div-alert .flash-warning{
+    background-color: #ffc107;
+    color: white;
+}

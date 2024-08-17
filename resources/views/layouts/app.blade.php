@@ -16,11 +16,17 @@
         </section>
 
         <section class="content">
-            <div class="div-error">
-                @if ($errors->any())
+            @if ($errors->any())
+                <div class="div-alert">
                     <span class="flash-error">{{ $errors->first() }}</span>
-                @endif
-            </div>
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="div-alert">
+                    <span class="flash-success">{{ session()->pull('success') }}</span>
+                </div>
+            @endif
+
             @yield('content')
         </section>
 

@@ -21,7 +21,7 @@
     margin-bottom: 1rem;
 }
 
-.btn-buy{
+.action-footballPlayer{
     display: flex;
     justify-content: end;
 }
@@ -40,6 +40,14 @@
     text-align: center;
     width: 50%;
 }
+
+.roundLineup-info{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0.5rem;
+}
+
 
 
 
