@@ -60,10 +60,7 @@
         @endforeach
     @else
     <div class="div-alert">
-        <span class="flash-warning">
-            Sem jogadores escalados!
-            <a href=" {{ route('listAllPlayers') }}">Escalar</a>
-        </span>
+        <span class="flash-warning">Sem jogadores escalados!</span>
     </div>
     @endif
 @endsection

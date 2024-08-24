@@ -14,7 +14,7 @@
     <div class="roundLineup-info">
         <h3>Jogadores escalados: {{ $roundLineup_count }}</h3>
         <h3>Saldo: R$ {{ number_format($round_amount, 2, ',') }}</h3>
-        <a href="{{ route('roundLineup') }}" class="btn btn-primary">Ver escalação!</a>
+        <a href="{{ route('roundLineup') }}" class="btn btn-primary">Ver escalação</a>
     </div>
     <div class="player-filter">
         <form method= "POST" action="{{ route('listAllPlayers') }}">

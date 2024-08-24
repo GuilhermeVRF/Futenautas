@@ -72,7 +72,7 @@ class RoundLineupController extends Controller
         })->count();
 
         if($count_position == $this->numbersPerPosition442($footballPlayer_position)){
-            return back()->withErrors('error', 'Limite para essa posição atendido!');
+            return back()->withErrors(['error' => 'Limite para essa posição atendido!']);
         }
 
         if($count_players < 12 ){
