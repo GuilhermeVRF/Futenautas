@@ -7,40 +7,64 @@
 @endpush
 
 @section('head')
-    @include('layouts.header',['title' => __('Criar jogador de futebol')])
+    @include('layouts.header',['title' => __('Criar time de futebol')])
 @endsection
 
 @section('content')
 <div class="container">
-    <form method= "POST" action="{{ route('player.store') }}" enctype="multipart/form-data">
+    <form method= "POST" action="{{ route('team.store') }}" enctype="multipart/form-data">
         @csrf
         <label for="name" class="form-label">Nome</label>
         <input type="text" name="name" id="name" class="form-control">
 
-        <label for="nacionality" class="form-label">Nacionalidade</label>
-        <input type="text" name="nacionality" id="nacionality" class="form-control">
+        <label for="stadium" class="form-label">Estádio</label>
+        <input type="text" name="stadium" id="stadium" class="form-control">
 
-        <label for="footballTeam" class="form-label">Time</label>
-        <select name="footballTeam" id="footballTeam" class="form-control">
-            @foreach($footballTeams as $footbalTeam)
-            <option value="{{ $footbalTeam['id'] }}"> {{ $footbalTeam['name'] }}</option>
-            @endforeach
-        </select>
+        <label for="foundationDate" class="form-label">Data de fundação</label>
+        <input type="date" name="foundationDate" id="foundationDate" class="form-control">
 
-        <label for="birthDate" class="form-label">Data de nascimento</label>
-        <input type="date" name="birthDate" id="birthDate" class="form-control">
+        <div class="form-row">
+            <div class="col">
+                <label for="city" class="form-label">Cidade</label>
+                <input type="text" name="city" id="city" class="form-control">
+            </div>
 
-        <label for="position" class="form-label">Time do coração</label>
-        <select name="position" id="position" class="form-control">
-            <option value="1">Goleiro</option>
-            <option value="2">Lateral</option>
-            <option value="3">Zagueiro</option>
-            <option value="4">Meia</option>
-            <option value="5">Goleiro</option>
-        </select>
+            <div class="col">
+                <label for="state" class="form-label">Estado</label>
+                <select id="state" name="state" class="form-control">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+        </div>
 
-        <label for="playerImage" class="form-label">Imagem do jogador</label>
-        <input type="file" id="playerImage" name="playerImage" class="form-control">
+        <label for="teamShield" class="form-label">Escudo</label>
+        <input type="file" id="teamShield" name="teamShield" class="form-control">
 
         <input type="submit" value="Enviar" class="btn btn-success">
     </form>

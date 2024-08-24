@@ -53,12 +53,23 @@
                     @php $position = 'Atacante'; @endphp
                 @break
             @endswitch
+
+            @php
+
+                $playerImage = 'data:image/jpeg;base64,' . base64_encode($footballPlayer['image']);
+                $footballTeam_shield = 'data:image/jpeg;base64,' . base64_encode($footballPlayer['footballTeam']['shield']);
+
+            @endphp
+
             <div class="player-card">
                 <div class="player-info">
-                    <img src="{{ asset('uploads/Jogador.jpg') }}">
+                    <img src="{{ $playerImage }}" height="150px">
                     <div>
                         <h3>{{ $position }} - {{ $footballPlayer['name'] }}</h3>
-                        <p>{{ $footballPlayer['footballTeam']['name'] }}</p>
+                        <div class="footballTeam-info">
+                            <img src="{{ $footballTeam_shield }}" height="50px"></img>
+                            <p>{{ $footballPlayer['footballTeam']['name'] }}</p>
+                        </div>
                         <p><bold>Preço: R$ </bold>{{ $footballPlayer['price'] }}</p>
                     </div>
                 </div>

@@ -28,6 +28,12 @@ body{
     gap: 0.5rem;
     color: white;
 }
+.form-row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 0.5rem;
+}
 
 .container label{
     width: 100%;
@@ -96,4 +102,19 @@ body{
 .div-alert .flash-warning{
     background-color: #ffc107;
     color: white;
+}
+
+.footballTeam-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footballTeam-info p{
+    font-size: 1rem;
+}
+
+.footballTeam-info img{
+    margin-bottom: 0.75rem;
 }

@@ -40,11 +40,20 @@
                 @break
             @endswitch
 
+                @php
+                    $playerImage = 'data:image/jpeg;base64,' . base64_encode($roundLineup['image']);
+                    $footballTeam_shield = 'data:image/jpeg;base64,' . base64_encode($roundLineup['shield']);
+                @endphp
+
             <div class="player-card">
                 <div class="player-info">
-                    <img src="{{ asset('uploads/Jogador.jpg') }}">
+                    <img src="{{ $playerImage ?? asset('uploads/Jogador.jpg') }}" height="150px">
                     <div>
-                        <h3>{{ $position }} - {{ $roundLineup['name'] }}</h3>
+                        <h3>{{ $position }} - {{ $roundLineup['footballPlayer_name'] }}</h3>
+                        <div class="footballTeam-info">
+                            <img src="{{ $footballTeam_shield }}" height="50px">
+                            <p>{{ $roundLineup['footballTeam_name'] }}</p>
+                        </div>
                         <p><bold>Preço: R$ </bold>{{ $roundLineup['price'] }}</p>
                     </div>
                 </div>

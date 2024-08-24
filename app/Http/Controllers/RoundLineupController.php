@@ -24,8 +24,9 @@ class RoundLineupController extends Controller
         $roundLineups = RoundLineup::where('teamPlayer_id', $teamInfo['id'])
         ->where('round_id', $round)
         ->join('footballplayer', 'roundLineup.footballplayer_id', '=', 'footballplayer.id')
+        ->join('footballTeam', 'footballplayer.footballteam_id','=','footballteam.id')
         ->orderBy('footballplayer.position')
-        ->select('roundLineup.id', 'footballplayer.name', 'footballplayer.price', 'footballplayer.position')
+        ->select('roundLineup.id', 'footballTeam.name AS footballTeam_name', 'footballTeam.shield', 'footballplayer.name AS footballPlayer_name', 'footballplayer.image', 'footballplayer.price', 'footballplayer.position')
         ->get();
 
         return view('roundLineup.index' , compact('teamInfo',

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FootballPlayerController;
+use App\Http\Controllers\FootballTeamController;
 use App\Http\Controllers\TeamPlayerController;
 use App\Http\Controllers\RoundLineupController;
 
@@ -16,7 +17,11 @@ Route::controller(AdministratorController::class)->group( function () {
     Route::get('admin/menu', 'menu')->name('admin-menu');
     Route::get('admin/login', 'index');
     Route::post('admin/authenticate',  'authenticate')->name('user.authenticate');
+});
 
+Route::controller(FootballTeamController::class)->group( function () {
+    Route::get('/team/create',  'create')->name('team.create');
+    Route::post('/team/store',  'store')->name('team.store');
 });
 
 Route::controller(UserController::class)->group( function () {
@@ -30,7 +35,7 @@ Route::controller(LoginController::class)->group( function () {
 });
 
 Route::controller(FootballPlayerController::class)->group( function () {
-    Route::get('/player/create',  'create')->name('create.player');
+    Route::get('/player/create',  'create')->name('player.create');
     Route::get('/players',  'index')->name('listAllPlayers');
     Route::post('/players',  'index')->name('listAllPlayers');
     Route::post('/player/store',  'store')->name('player.store');

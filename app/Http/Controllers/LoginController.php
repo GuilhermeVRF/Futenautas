@@ -25,7 +25,7 @@ class LoginController extends Controller
             return Redirect::route('admin-menu');
         }
 
-        if(Auth::guard('users')->attempt($credentials)){
+        if(Auth::attempt($credentials)){
             $request->session()->regenerate();
 
             return Redirect::route('listAllPlayers', 'all');

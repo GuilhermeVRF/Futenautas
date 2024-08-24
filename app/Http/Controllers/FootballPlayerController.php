@@ -27,7 +27,7 @@ class FootballPlayerController extends Controller
         ->count();
 
         if(empty($request->filter) || $request->filter == 'all'){
-            $footballPlayers = FootballPlayer::find(1)->with('footballTeam')
+            $footballPlayers = FootballPlayer::with('footballTeam')
             ->orderBy('position')->get();
         }else{
             $request->validate([
@@ -52,7 +52,7 @@ class FootballPlayerController extends Controller
 
     public function create(){
         $footballTeams = $footballTeams = FootballTeam::all()->select('id', 'name');
-        return view('administrator.footballTeam.create', compact('footballTeams'));
+        return view('administrator.footballPlayer.create', compact('footballTeams'));
     }
 
     public function store(Request $request){
