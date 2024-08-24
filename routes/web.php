@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministratorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -9,6 +10,13 @@ use App\Http\Controllers\RoundLineupController;
 
 Route::get('/', function() {
     return view('user.login');
+});
+
+Route::controller(AdministratorController::class)->group( function () {
+    Route::get('admin/menu', 'menu')->name('admin-menu');
+    Route::get('admin/login', 'index');
+    Route::post('admin/authenticate',  'authenticate')->name('user.authenticate');
+
 });
 
 Route::controller(UserController::class)->group( function () {
@@ -22,8 +30,10 @@ Route::controller(LoginController::class)->group( function () {
 });
 
 Route::controller(FootballPlayerController::class)->group( function () {
+    Route::get('/player/create',  'create')->name('create.player');
     Route::get('/players',  'index')->name('listAllPlayers');
-    Route::post('/players',  'INDEX')->name('listAllPlayers');
+    Route::post('/players',  'index')->name('listAllPlayers');
+    Route::post('/player/store',  'store')->name('player.store');
 })->middleware('auth.basic');
 
 Route::controller(TeamPlayerController::class)->group( function () {

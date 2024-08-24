@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
-
     public function index(){
         return view('user.login');
     }
@@ -20,7 +19,13 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if(Auth::attempt($credentials)){
+        if(Auth::guard('admins')->attempt($credentials)){
+            $request->session()->regenerate();
+
+            return Redirect::route('admin-menu');
+        }
+
+        if(Auth::guard('users')->attempt($credentials)){
             $request->session()->regenerate();
 
             return Redirect::route('listAllPlayers', 'all');

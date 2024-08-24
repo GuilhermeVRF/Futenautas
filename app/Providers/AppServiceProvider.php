@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Auth::extend('users', function ($app, $name, array $config) {
+            return new EloquentUserProvider($app['hash'],$config['model']);
+        });
+
+        Auth::extend('admins', function ($app, $name, array $config) {
+            return new EloquentUserProvider($app['hash'],$config['model']);
+        });
     }
 }
