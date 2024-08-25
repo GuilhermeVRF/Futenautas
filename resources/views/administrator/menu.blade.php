@@ -18,7 +18,7 @@
         <div class="menu-options">
             <a href="{{route('player.create')}}" class="btn btn-primary">Criar jogador</a>
             <a href="{{route('team.create')}}" class="btn btn-primary">Criar time de futebol</a>
-            <a href="#" class="btn btn-primary">Manipular rodada</a>
+            <a href="{{route('round.index')}}" class="btn btn-primary">Manipular rodada</a>
         </div>
     </div>
 </div>

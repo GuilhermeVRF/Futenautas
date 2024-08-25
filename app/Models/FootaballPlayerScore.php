@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FootaballPlayerScore extends Model
 {
-    protected $table = 'FootaballPlayerScore';
+    protected $table = 'footballplayerscore';
     public $timestamps = false;
 
     public function footballPlayer(){

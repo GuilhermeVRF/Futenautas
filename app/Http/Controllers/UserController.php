@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FootballTeam;
 use Illuminate\Http\Request;
+use App\Models\TeamPlayer;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller{
@@ -27,5 +28,10 @@ class UserController extends Controller{
         $request->session()->put('heartFootballTeam', $request->heartFootballTeam);
 
         return Redirect::route('teamPlayer.create');
+    }
+
+    public function menu(){
+        $teamInfo = TeamPlayer::getTeamInfo();
+        return view('user.menu', compact('teamInfo'));
     }
 }

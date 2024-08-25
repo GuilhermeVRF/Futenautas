@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FootaballPlayerScore;
 use App\Models\FootballPlayer;
+use App\Models\FootballTeam;
 use App\Models\Round;
 use App\Models\RoundLineup;
 use App\Models\TeamPlayer;
@@ -50,7 +52,6 @@ class RoundLineupController extends Controller
         $footballPlayer = FootballPlayer::where('id', $request->footballPlayer_id)->first();
         $footballPlayer_position = $footballPlayer['position'];
         $teamPlayer = TeamPlayer::where('user_id', Auth::id())->first();
-
 
         // Verificar se já escalou os 11 jogadores
         $count_players = RoundLineup::where('teamPlayer_id', $teamPlayer['id'])

@@ -8,6 +8,8 @@ use App\Http\Controllers\FootballPlayerController;
 use App\Http\Controllers\FootballTeamController;
 use App\Http\Controllers\TeamPlayerController;
 use App\Http\Controllers\RoundLineupController;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\FootballPlayerScoreController;
 
 Route::get('/', function() {
     return view('user.login');
@@ -26,6 +28,7 @@ Route::controller(FootballTeamController::class)->group( function () {
 
 Route::controller(UserController::class)->group( function () {
     Route::get('/signup', 'index');
+    Route::get('/menu', 'menu')->name('user.menu');
     Route::post('store',  'store')->name('user.store');
 });
 
@@ -46,8 +49,18 @@ Route::controller(TeamPlayerController::class)->group( function () {
     Route::post('/teamPlayer/store',  'store')->name('teamPlayer.store');
 });
 
+Route::controller(RoundController::class)->group( function () {
+    Route::get('/round', 'index')->name('round.index');
+    Route::post('/finishRound', 'finishRound')->name('round.finish');
+});
+
 Route::controller(RoundLineupController::class)->group( function () {
     Route::post('/roundLineup/store',  'store')->name('roundLineup.store');
     Route::get('roundLineup', 'index')->name('roundLineup');
     Route::post('/roundLineup/delete', 'destroy')->name('roundLine.destroy');
+});
+
+Route::controller(FootballPlayerScoreController::class)->group( function () {
+    Route::get('/footaballPlayerScore',  'index')->name('footaballPlayerScore.index');
+    Route::post('/footaballPlayerScore',  'index')->name('footaballPlayerScore.index');
 });
