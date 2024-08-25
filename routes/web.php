@@ -24,6 +24,7 @@ Route::controller(AdministratorController::class)->group( function () {
 Route::controller(FootballTeamController::class)->group( function () {
     Route::get('/team/create',  'create')->name('team.create');
     Route::post('/team/store',  'store')->name('team.store');
+    Route::get('/team/ranking',  'ranking')->name('team.ranking');
 });
 
 Route::controller(UserController::class)->group( function () {

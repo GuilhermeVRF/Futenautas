@@ -107,6 +107,10 @@
                 </div>
             </div>
         @endforeach
+    @else
+        <div class="div-alert">
+            <span class="flash-warning">Sem jogadores escalados!</span>
+        </div>
     @endif
 @endsection
 

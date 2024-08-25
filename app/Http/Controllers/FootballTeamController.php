@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\FootballTeam;
+use App\Models\TeamPlayer;
+use DB;
 use Illuminate\Http\Request;
 
 class FootballTeamController extends Controller
@@ -50,5 +52,19 @@ class FootballTeamController extends Controller
 
         $footballTeam->save();
         return back()->with('success', 'Time criado com sucesso!');
+    }
+
+    public function ranking(){
+        $teamInfo = TeamPlayer::getTeamInfo();
+
+        $footballTeams = FootballTeam::
+        join('footballplayer', 'footballplayer.footballteam_id','=', 'footballteam.id')
+        ->join('footballplayerscore', 'footballplayerscore.footballplayer_id', '=', 'footballplayer.id')
+        ->select('footballteam.name', 'footballteam.shield', DB::raw('SUM(footballplayerscore.score) AS total_score'))
+        ->groupBy('footballteam.name', 'footballteam.shield')
+        ->orderBy('total_score', 'DESC')
+        ->get();
+
+        return view('administrator.footballTeam.ranking', compact('footballTeams', 'teamInfo'));
     }
 }
