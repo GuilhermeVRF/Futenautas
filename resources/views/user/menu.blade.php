@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Time')
+@section('title', 'Menu')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/assets/css/admin/admin.css') }}">
@@ -20,6 +20,7 @@
             <a href="{{route('roundLineup')}}" class="btn btn-primary">Ver Escalação</a>
             <a href="{{route('footaballPlayerScore.index')}}" class="btn btn-primary">Ver pontuação da rodada</a>
             <a href="{{route('team.ranking')}}" class="btn btn-primary">Ranking Times de Futebol</a>
+            <a href="{{route('teamPlayer.ranking')}}" class="btn btn-primary">Ranking Times dos Players</a>
         </div>
     </div>
 </div>

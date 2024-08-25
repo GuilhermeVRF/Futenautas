@@ -20,11 +20,11 @@ class RoundController extends Controller
 
     public function finishRound(){
         $round = Round::orderBy('id', 'DESC')->first()['id'];
-        $rostered_players = RoundLineup::where('round_id', $round)->get();
+        $rostered_players = FootballPlayer::all();
         foreach($rostered_players as $rostered_player){
             $footballPlayerScore = new FootaballPlayerScore;
             $footballPlayerScore->round_id = $round;
-            $footballPlayerScore->footballplayer_id = $rostered_player['footballplayer_id'];
+            $footballPlayerScore->footballplayer_id = $rostered_player['id'];
             $footballPlayerScore->score = rand(0,15);
 
             $footballPlayerScore->save();

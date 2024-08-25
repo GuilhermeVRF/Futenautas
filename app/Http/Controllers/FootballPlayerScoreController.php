@@ -58,7 +58,7 @@ class FootballPlayerScoreController extends Controller
                 $footballPlayerScores = $footballPlayerScores->where('footballplayer.position', $request->position)->orderBy('score', 'DESC')->get();
             }
         }else{
-            $footballPlayerScores = $footballPlayerScores->get();
+            $footballPlayerScores = $footballPlayerScores->orderBy('score', 'DESC')->get();
         }
 
         return view('roundLineup.score', compact('rounds',

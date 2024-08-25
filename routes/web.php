@@ -47,6 +47,8 @@ Route::controller(FootballPlayerController::class)->group( function () {
 
 Route::controller(TeamPlayerController::class)->group( function () {
     Route::get('/teamPlayer/create',  'create')->name('teamPlayer.create');
+    Route::get('/teamPlayer/ranking',  'ranking')->name('teamPlayer.ranking');
+    Route::post('/teamPlayer/ranking',  'ranking')->name('teamPlayer.ranking');
     Route::post('/teamPlayer/store',  'store')->name('teamPlayer.store');
 });
 

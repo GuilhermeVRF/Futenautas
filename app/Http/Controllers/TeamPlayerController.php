@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Round;
 use App\Models\TeamPlayer;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use DB;
 use Illuminate\Support\Facades\Redirect;
 
 class TeamPlayerController extends Controller
@@ -57,5 +59,31 @@ class TeamPlayerController extends Controller
         }
 
         return back()->withErrors('error', 'Ocorreu um erro durante o registro!');
+    }
+
+    public function ranking(Request $request){
+        $teamInfo = TeamPlayer::getTeamInfo();
+        $rounds = Round::orderBy('id', 'DESC')->get();
+        $playersTeams = TeamPlayer::join('roundlineup', 'roundlineup.teamplayer_id', '=','teamplayer.id')
+            ->join('footballplayer', 'roundlineup.footballplayer_id', '=', 'footballplayer.id')
+            ->join('footballplayerscore', 'footballplayerscore.footballplayer_id', '=', 'footballplayer.id')
+            ->select('teamplayer.name', 'teamplayer.logo', DB::raw('SUM(footballplayerscore.score) AS total_score'))
+            ->groupBy('teamplayer.name', 'teamplayer.logo');
+
+        if(empty($request->round)){
+            $playersTeams = $playersTeams->orderBy('total_score','DESC')->get();
+        }else{
+            $request->validate([
+                'round' => 'required'
+            ],[
+                'round.required' => 'O campo Rodada é obrigatório!'
+            ]);
+
+            $playersTeams = $playersTeams->where('roundlineup.round_id',$request->round)->orderBy('total_score','DESC')->get();
+        }
+
+        return view('teamPlayer.ranking', compact('playersTeams',
+         'teamInfo',
+        'rounds'));
     }
 }
