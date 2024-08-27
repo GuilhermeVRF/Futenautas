@@ -70,7 +70,7 @@
                             <img src="{{ $footballTeam_shield }}" height="50px"></img>
                             <p>{{ $footballPlayer['footballTeam']['name'] }}</p>
                         </div>
-                        <p><bold>Preço: R$ </bold>{{ $footballPlayer['price'] }}</p>
+                        <p class="player-price"><bold>Preço: R$ </bold>{{ $footballPlayer['price'] }}</p>
                     </div>
                 </div>
 
