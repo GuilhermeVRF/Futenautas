@@ -12,13 +12,13 @@
 
 @section('content')
 
-<div class="container">
-    <table>
-        <thead>
-            <th>Posição</th>
-            <th>Time</th>
-            <th>Pontuação</th>
-        </thead>
+<table class="ranking-teams">
+    <thead>
+        <th>Posição</th>
+        <th>Time</th>
+        <th>Pontuação</th>
+    </thead>
+    <tbody>
         @php $rank = 1; @endphp
         @foreach ($footballTeams as $footballTeam)
             @php
@@ -31,7 +31,7 @@
             </tr>
             @php $rank++ @endphp
         @endforeach
-    </table>
-</div>
+    </tbody>
+</table>
 
 @endsection

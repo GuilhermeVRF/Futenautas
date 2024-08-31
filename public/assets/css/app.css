@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-p, h1, h2, h3{
+p, h1, h2, h3, h4{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
 }
@@ -167,3 +167,37 @@ body{
 .menu-link:hover{
     color: black;
 }
+
+.ranking-teams{
+    border-collapse: collapse;
+     margin: 25px 0;
+     width: 50%;
+}
+
+.ranking-teams thead th{
+    background-color: black;
+    color: white;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.ranking-teams th, .ranking-teams td{
+    padding: 12px 15px;
+}
+
+.ranking-teams tbody tr{
+    background-color: white;
+    border: 1px solid lightgrey;
+    font-size: 1.2rem;
+}
+
+.ranking-teams tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.ranking-teams tbody tr:last-of-type{
+    border-bottom: 3px solid black;
+}
+
+

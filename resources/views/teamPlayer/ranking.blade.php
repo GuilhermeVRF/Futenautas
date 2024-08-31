@@ -26,26 +26,25 @@
     </form>
 </div>
 
-<div class="container">
-    <table>
+    <table class="ranking-teams">
         <thead>
             <th>Posição</th>
             <th>Time</th>
             <th>Pontuação</th>
         </thead>
-        @php $rank = 1; @endphp
-        @foreach ($playersTeams as $playerTeam)
-            @php
-                $playerTeam_logo = 'data:image/jpeg;base64,' . base64_encode($playerTeam['logo']);
-            @endphp
-            <tr>
-                <td>{{ $rank }}°</td>
-                <td><img src="{{ $playerTeam_logo }}" height="50px">{{ $playerTeam['name'] }}</td>
-                <td>{{ $playerTeam['total_score'] }}</td>
-            </tr>
-            @php $rank++ @endphp
-        @endforeach
+        <tbody>
+            @php $rank = 1; @endphp
+            @foreach ($playersTeams as $playerTeam)
+                @php
+                    $playerTeam_logo = 'data:image/jpeg;base64,' . base64_encode($playerTeam['logo']);
+                @endphp
+                <tr>
+                    <td>{{ $rank }}°</td>
+                    <td><img src="{{ $playerTeam_logo }}" height="50px">{{ $playerTeam['name'] }}</td>
+                    <td>{{ $playerTeam['total_score'] }}</td>
+                </tr>
+                @php $rank++ @endphp
+            @endforeach
+        </tbody>
     </table>
-</div>
-
 @endsection
