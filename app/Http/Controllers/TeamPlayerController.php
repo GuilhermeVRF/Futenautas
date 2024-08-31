@@ -70,7 +70,7 @@ class TeamPlayerController extends Controller
             ->select('teamplayer.name', 'teamplayer.logo', DB::raw('SUM(footballplayerscore.score) AS total_score'))
             ->groupBy('teamplayer.name', 'teamplayer.logo');
 
-        if(empty($request->round)){
+        if(empty($request->round) || $request->round == 'all'){
             $playersTeams = $playersTeams->orderBy('total_score','DESC')->get();
         }else{
             $request->validate([

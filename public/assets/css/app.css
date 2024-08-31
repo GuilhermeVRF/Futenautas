@@ -12,6 +12,15 @@ body{
     background-color: #00712D !important;
 }
 
+.header-title{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .container{
     display: flex;
     flex-direction: column;

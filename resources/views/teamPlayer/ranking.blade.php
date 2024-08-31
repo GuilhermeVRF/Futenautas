@@ -17,6 +17,7 @@
         @csrf
         <label for="round" class="form-label">Rodada</label>
         <select name="round" id="round" class="form-control">
+            <option value="all">Todos</option>
             @foreach ($rounds as $round)
                 <option value="{{ $round['id'] }}">{{ $round['id'] }}</option>
             @endforeach
