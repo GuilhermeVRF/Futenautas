@@ -1,6 +1,7 @@
 <div style="display:flex;
     flex-direction:row;
-    justify-content:center;">
+    justify-content:center;
+    align-items:center">
     <h1 style="width:100%">Futenautas</h1>
     <img src="https://github.com/user-attachments/assets/b92d82cc-5614-414e-9003-17eb0d729401" >
 </div>
