@@ -31,8 +31,8 @@ class LoginController extends Controller
             return Redirect::route('user.menu');
         }
 
-        return back()->withErrors([
-            'email' => 'O e-mail informado não está cadastrado!',
-        ])->onlyInput('email');
+        return back()->with([
+            'errors' => 'O e-mail informado não está cadastrado!',
+        ]);
     }
 }
