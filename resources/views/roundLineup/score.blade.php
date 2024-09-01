@@ -7,7 +7,12 @@
 @endpush
 
 @section('head')
-    @include('layouts.header',['title' => __('Pontuação - Rodada '. $rounds[sizeof($rounds) - 1]['id'])])
+    @if($round == 'all')
+        @php $message_round = 'Todas as rodadas' @endphp
+    @else
+        @php $message_round = 'Rodada '. $round @endphp
+    @endif
+    @include('layouts.header',['title' => __('Pontuação - '. $message_round)])
 @endsection
 
 @section('content')
@@ -18,6 +23,7 @@
                 <div class="col">
                     <label for="round" class="form-label">Rodada</label>
                     <select name="round" id="round" class="form-control">
+                        <option value="all">Todas</option>
                         @foreach ($rounds as $round)
                             <option value="{{ $round['id'] }}">{{ $round['id'] }}</option>
                         @endforeach

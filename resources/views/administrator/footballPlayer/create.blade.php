@@ -36,7 +36,7 @@
             <option value="2">Lateral</option>
             <option value="3">Zagueiro</option>
             <option value="4">Meia</option>
-            <option value="5">Goleiro</option>
+            <option value="5">Atacante</option>
         </select>
 
         <label for="playerImage" class="form-label">Imagem do jogador</label>

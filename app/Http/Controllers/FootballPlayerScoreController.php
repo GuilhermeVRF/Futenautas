@@ -12,14 +12,16 @@ class FootballPlayerScoreController extends Controller
 
     public function index(Request $request){
         $filter = $request->filter ?? '1';
+        $round = $request->round ?? 'all';
         $rounds = Round::orderBy('id', 'DESC')->get();
         $footballTeams = FootballTeam::all();
-        $footballPlayerScores = FootaballPlayerScore::where('round_id', $request->round ?? $rounds[sizeof($rounds) - 1]['id'])
-            ->join('footballplayer', 'footballplayerscore.footballplayer_id', '=','footballplayer.id')
-            ->join('footballteam', 'footballplayer.footballteam_id', '=','footballteam.id')
-            ->select('footballPlayer.name AS footballPlayer_name', 'footballPlayer.image', 'footballPlayer.position', 'score', 'footballTeam.name AS footballTeam_name', 'footballTeam.shield');
+        $footballPlayerScores = FootaballPlayerScore::when((!empty($request->round) && $request->round != 'all'), function($query) use($request){
+            $query->where('round_id', $request->round);
+        })->join('footballplayer', 'footballplayerscore.footballplayer_id', '=','footballplayer.id')
+          ->join('footballteam', 'footballplayer.footballteam_id', '=','footballteam.id')
+          ->select('footballPlayer.name AS footballPlayer_name', 'footballPlayer.image', 'footballPlayer.position', 'score', 'footballTeam.name AS footballTeam_name', 'footballTeam.shield');
 
-        if(!empty($request->filter)){
+        if(!empty($request->filter) && $request->filter != 'all'){
             $request->validate([
                 'filter' => 'required|in:1,2,3,4'
             ],[
@@ -37,7 +39,7 @@ class FootballPlayerScoreController extends Controller
                     'footballPlayer.max' => 'O campo jogador deve ter no máximo 200 caractéres!'
                 ]);
 
-                $footballPlayerScores = $footballPlayerScores->where('footballplayer.name', $request->footballPlayer)->orderBy('score', 'DESC')->get();
+                $footballPlayerScores = $footballPlayerScores->where('footballplayer.name', 'LIKE', $request->footballPlayer.'%')->orderBy('score', 'DESC')->get();
             }else if($request->filter == '3'){
                 $request->validate([
                     'footballTeam' => 'required|in:1,2,3,4,5,6,7,8,9,10,11,12'
@@ -64,7 +66,8 @@ class FootballPlayerScoreController extends Controller
         return view('roundLineup.score', compact('rounds',
         'footballPlayerScores',
         'footballTeams',
-    'filter'));
+        'round',
+        'filter'));
     }
 
 
